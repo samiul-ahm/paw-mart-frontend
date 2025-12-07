@@ -2,7 +2,9 @@ import { createBrowserRouter } from "react-router";
 import ErrorPage from "../Pages/ErrorPage";
 import HomeLayout from "../layout/HomeLayout";
 import Home from "../Pages/Home";
-import ServiceDetails from "../Pages/ServiceDetails";
+import Services from "../Pages/Services";
+import AddService from "../Pages/AddService";
+import ServiceDetails from "../components/ServiceDetails";
 
 const router = createBrowserRouter([
   {
@@ -16,11 +18,15 @@ const router = createBrowserRouter([
       },
       {
         path: "/services",
-        element: <ServiceDetails></ServiceDetails>,
+        element: <Services></Services>,
       },
       {
-        path: "/add-services",
-        element: <ServiceDetails></ServiceDetails>,
+        path: "/services/:id",
+        element: <ServiceDetails></ServiceDetails>
+      },
+      {
+        path: "/add-service",
+        element: <AddService></AddService>,
       },
       {
         path: "/my-profile",

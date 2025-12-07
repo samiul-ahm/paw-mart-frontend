@@ -69,10 +69,13 @@ const Navbar = () => {
             <NavLink to="/">Home</NavLink>
           </li>
           <li>
-            <NavLink>Service</NavLink>
+            <NavLink to={"/services"}>Service</NavLink>
           </li>
           <li>
-            <NavLink>Pets</NavLink>
+            <NavLink to={"/add-service"}>Add service</NavLink>
+          </li>
+          <li>
+            <NavLink>My Account</NavLink>
           </li>
         </ul>
       </div>
