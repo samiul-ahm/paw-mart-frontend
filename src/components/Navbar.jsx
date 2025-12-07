@@ -1,18 +1,35 @@
-import React, { useEffect, useState } from "react";
+import React, { use, useEffect, useState } from "react";
 import { Link, NavLink } from "react-router";
 import logo from "../assets/petmart.jpg";
+import { AuthContext } from "../provider/AuthProvider";
+import { FaUserCircle } from "react-icons/fa";
 
 const Navbar = () => {
+  const { user, logOut } = use(AuthContext);
+
   const [isChecked, setIsChecked] = useState(false);
 
   const handleTheme = () => {
     setIsChecked((prev) => !prev);
   };
 
+
   useEffect(() => {
     const theme = isChecked ? "dark" : "light";
     document.documentElement.setAttribute("data-theme", theme);
   }, [isChecked]);
+
+  // logout
+  const handleLogout = () => {
+    console.log('user trying to logout');
+    logOut()
+    .then(()=>{
+      alert("You logged out successfully")
+    })
+    .catch((error)=>{
+      console.log(error);
+    })
+  }
 
   return (
     <div className="navbar bg-base-100 shadow-xl">
@@ -61,6 +78,7 @@ const Navbar = () => {
         <div className="btn btn-ghost text-xl">
           <img src={logo} className="w-[25px] h-[25px]" alt="" />
           Pet Mart
+          <div>{user && user.email}</div>
         </div>
       </div>
       <div className="navbar-center hidden lg:flex">
@@ -108,7 +126,15 @@ const Navbar = () => {
             </svg>
           </label>
         </p>
-        <Link to={"/auth/login"} className="btn btn-secondary px-10">Login</Link>
+        <div className="flex gap-5 items-center">
+          <FaUserCircle className="w-8 h-8 " />
+
+          {user ? 
+          <button onClick={handleLogout} className="btn btn-secondary px-10">Logout</button> : <Link to={"/auth/login"} className="btn btn-secondary px-10">
+            Login
+          </Link>}
+          
+        </div>
       </div>
     </div>
   );
