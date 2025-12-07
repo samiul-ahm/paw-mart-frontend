@@ -5,6 +5,9 @@ import Home from "../Pages/Home";
 import Services from "../Pages/Services";
 import AddService from "../Pages/AddService";
 import ServiceDetails from "../components/ServiceDetails";
+import Login from "../Pages/Login";
+import Register from "../Pages/Register";
+import AuthLayout from "../layout/AuthLayout";
 
 const router = createBrowserRouter([
   {
@@ -22,7 +25,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/services/:id",
-        element: <ServiceDetails></ServiceDetails>
+        element: <ServiceDetails></ServiceDetails>,
       },
       {
         path: "/add-service",
@@ -36,7 +39,17 @@ const router = createBrowserRouter([
   },
   {
     path: "/auth",
-    element: <h2>Auth</h2>,
+    element: <AuthLayout></AuthLayout>,
+    children: [
+      {
+        path: "/auth/login",
+        element: <Login></Login>,
+      },
+      {
+        path: "/auth/register",
+        element: <Register></Register>,
+      },
+    ],
   },
 ]);
 

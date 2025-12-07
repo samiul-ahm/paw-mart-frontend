@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { NavLink } from "react-router";
+import { Link, NavLink } from "react-router";
 import logo from "../assets/petmart.jpg";
 
 const Navbar = () => {
@@ -108,7 +108,7 @@ const Navbar = () => {
             </svg>
           </label>
         </p>
-        <a className="btn btn-neutral px-10">Login</a>
+        <Link to={"/auth/login"} className="btn btn-secondary px-10">Login</Link>
       </div>
     </div>
   );

@@ -38,7 +38,7 @@ const Services = () => {
               <h3 className="font-semibold text-lg">{item.name}</h3>
               <p className="text-sm text-gray-600">Category: {item.category}</p>
               <p className="text-sm text-gray-600">Location: {item.location}</p>
-              <p className="font-bold text-indigo-600">৳ {item.price}</p>
+              <p className="font-bold text-indigo-600">$ {item.price}</p>
 
               <Link to={`/services/${item.id}`}>
                 <button className="mt-3 w-full bg-indigo-600 text-white py-2 rounded-md hover:bg-indigo-700">
