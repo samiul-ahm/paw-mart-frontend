@@ -6,7 +6,7 @@ const Services = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("http://localhost:5000/services")
+    fetch("http://localhost:3000/services")
       .then((res) => res.json())
       .then((data) => {
         setServices(data);
@@ -22,14 +22,14 @@ const Services = () => {
     <div className="max-w-7xl mx-auto px-4 py-10">
       <h2 className="text-2xl font-bold mb-6">All Services</h2>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
         {services.map((item) => (
           <div
             key={item.id}
-            className="border rounded-xl shadow-md overflow-hidden"
+            className=" rounded-xl shadow-xl overflow-hidden"
           >
             <img
-              src={item.imageUrl}
+              src={item.image}
               alt={item.name}
               className="w-full h-48 object-cover"
             />
@@ -38,13 +38,19 @@ const Services = () => {
               <h3 className="font-semibold text-lg">{item.name}</h3>
               <p className="text-sm text-gray-600">Category: {item.category}</p>
               <p className="text-sm text-gray-600">Location: {item.location}</p>
-              <p className="font-bold text-indigo-600">$ {item.price}</p>
+              <p className="font-bold text-secondary">$ {item.price}</p>
 
-              <Link to={`/services/${item.id}`}>
+              {/* <Link to={`/services/${item.id}`}>
                 <button className="mt-3 w-full bg-indigo-600 text-white py-2 rounded-md hover:bg-indigo-700">
                   See Details
                 </button>
-              </Link>
+              </Link> */}
+                <Link
+                  to={`/services/${item?._id}`}
+                  className="btn btn-secondary"
+                >
+                  View Details
+                </Link>
             </div>
           </div>
         ))}

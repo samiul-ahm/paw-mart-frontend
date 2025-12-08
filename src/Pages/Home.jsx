@@ -3,6 +3,7 @@ import Popular from "../components/Popular";
 import max from "../assets/max.jpg";
 import bella from "../assets/bella.avif";
 import luna from "../assets/luna.jpg";
+import RecentListings from "../components/RecentListing";
 
 const Home = () => {
   return (
@@ -21,6 +22,9 @@ const Home = () => {
         <p className="text-xl font-semibold mt-4">
           Because Every Pet Deserves Love and Care.
         </p>
+      </div>
+      <div>
+        <RecentListings></RecentListings>
       </div>
       {/* how your purchase helps */}
       <section className="bg-pink-50 py-16 px-6 text-center">
