@@ -8,6 +8,7 @@ import ServiceDetails from "../components/ServiceDetails";
 import Login from "../Pages/Login";
 import Register from "../Pages/Register";
 import AuthLayout from "../layout/AuthLayout";
+import PrivateRoute from "../provider/PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -29,7 +30,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/add-service",
-        element: <AddService></AddService>,
+        element: (
+          <PrivateRoute>
+            <AddService></AddService>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/my-profile",
