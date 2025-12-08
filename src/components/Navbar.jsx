@@ -13,7 +13,6 @@ const Navbar = () => {
     setIsChecked((prev) => !prev);
   };
 
-
   useEffect(() => {
     const theme = isChecked ? "dark" : "light";
     document.documentElement.setAttribute("data-theme", theme);
@@ -23,13 +22,13 @@ const Navbar = () => {
   const handleLogout = () => {
     // console.log('user trying to logout');
     logOut()
-    .then(()=>{
-      alert("You logged out successfully")
-    })
-    .catch((error)=>{
-      console.log(error);
-    })
-  }
+      .then(() => {
+        alert("You logged out successfully");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   return (
     <div className="navbar bg-base-100 shadow-xl">
@@ -127,13 +126,27 @@ const Navbar = () => {
           </label>
         </p>
         <div className="flex gap-5 items-center">
-          <FaUserCircle className="w-8 h-8 " />
+          <div>
+            {user ? (
+              <img
+                src={user.photoURL}
+                alt="User"
+                className="w-[35px] h-[35px] rounded-full"
+              />
+            ) : (
+              <FaUserCircle className="w-[35px] h-[35px]" />
+            )}
+          </div>
 
-          {user ? 
-          <button onClick={handleLogout} className="btn btn-secondary px-10">Logout</button> : <Link to={"/auth/login"} className="btn btn-secondary px-10">
-            Login
-          </Link>}
-          
+          {user ? (
+            <button onClick={handleLogout} className="btn btn-secondary px-10">
+              Logout
+            </button>
+          ) : (
+            <Link to={"/auth/login"} className="btn btn-secondary px-10">
+              Login
+            </Link>
+          )}
         </div>
       </div>
     </div>
