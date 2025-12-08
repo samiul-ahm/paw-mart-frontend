@@ -5,12 +5,12 @@ import { initializeApp } from "firebase/app";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyDrNcH4nV3Bv6siJevKwVTcuhOYPps5n6k",
-  authDomain: "pet-mart-a10.firebaseapp.com",
-  projectId: "pet-mart-a10",
-  storageBucket: "pet-mart-a10.firebasestorage.app",
-  messagingSenderId: "1017591657564",
-  appId: "1:1017591657564:web:e48283442fb8db93b7a299"
+  apiKey:import.meta.env.VITE_apiKey,
+  authDomain:import.meta.env.VITE_authDomain,
+  projectId:import.meta.env.VITE_projectId,
+  storageBucket:import.meta.env.VITE_storageBucket,
+  messagingSenderId:import.meta.env.VITE_messagingSenderId,
+  appId:import.meta.env.VITE_appId,
 };
 
 // Initialize Firebase

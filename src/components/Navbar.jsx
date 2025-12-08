@@ -77,7 +77,7 @@ const Navbar = () => {
         <div className="btn btn-ghost text-xl">
           <img src={logo} className="w-[25px] h-[25px]" alt="" />
           Pet Mart
-          <div>{user && user.email}</div>
+          {/* <div>{user && user.email}</div> */}
         </div>
       </div>
       <div className="navbar-center hidden lg:flex">
