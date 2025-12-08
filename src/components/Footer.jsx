@@ -8,7 +8,7 @@ const Footer = () => {
         <div>
           <img src={logo} className="w-10 mb-4" alt="" />
           <p className="text-lg font-semibold">
-            PawMart connects local pet owners and buyers 
+            PawMart connects local <br />pet  owners and buyers 
             <br />for
             adoption and pet care products.
           </p>

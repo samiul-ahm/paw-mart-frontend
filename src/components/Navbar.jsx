@@ -3,6 +3,7 @@ import { Link, NavLink } from "react-router";
 import logo from "../assets/petmart.jpg";
 import { AuthContext } from "../provider/AuthProvider";
 import { FaUserCircle } from "react-icons/fa";
+import Swal from "sweetalert2";
 
 const Navbar = () => {
   const { user, logOut } = use(AuthContext);
@@ -23,7 +24,12 @@ const Navbar = () => {
     // console.log('user trying to logout');
     logOut()
       .then(() => {
-        alert("You logged out successfully");
+        // alert("You logged out successfully");
+        Swal.fire({
+          title: "Logged Out!",
+          icon: "success",
+          draggable: true,
+        });
       })
       .catch((error) => {
         console.log(error);
@@ -56,22 +62,21 @@ const Navbar = () => {
             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
           >
             <li>
-              <a>Item 1</a>
+              <NavLink to="/">Home</NavLink>
             </li>
             <li>
-              <a>Parent</a>
-              <ul className="p-2">
+              <NavLink to={"/services"}>Service</NavLink>
+            </li>
+            {user && (
+              <>
                 <li>
-                  <a>Submenu 1</a>
+                  <NavLink to={"/add-service"}>Add service</NavLink>
                 </li>
                 <li>
-                  <a>Submenu 2</a>
+                  <NavLink to={"/my-services"}>My Services</NavLink>
                 </li>
-              </ul>
-            </li>
-            <li>
-              <a>Item 3</a>
-            </li>
+              </>
+            )}
           </ul>
         </div>
         <div className="btn btn-ghost text-xl">

@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../provider/AuthProvider";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 const AddService = () => {
   const { user } = useContext(AuthContext);
@@ -29,15 +30,28 @@ const AddService = () => {
       email,
     };
     console.log(formData);
-    axios.post("http://localhost:3000/services", formData)
-    .then(res=>{
-        console.log(res );
-    })
+    axios.post("http://localhost:3000/services", formData).then((res) => {
+      console.log(res);
+      if (res.data.acknowledged) {
+        Swal.fire({
+          title: "Added Successfully",
+          icon: "success",
+          draggable: true,
+        });
+        e.target.reset();
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Something went wrong!",
+        });
+      }
+    });
   };
 
   return (
     <div>
-      <h2>Add service Page</h2>
+      {/* <h2>Add service Page</h2> */}
       <form
         onSubmit={handleSubmit}
         className="max-w-2xl mx-auto p-6 bg-white shadow-lg rounded-xl space-y-4"
@@ -82,7 +96,6 @@ const AddService = () => {
             type="text"
             name="location"
             className="w-full border p-2 rounded"
-            
           />
         </div>
 
@@ -144,7 +157,7 @@ const AddService = () => {
           type="submit"
           className="w-full bg-indigo-600 text-white p-2 rounded hover:bg-indigo-700 transition"
         >
-          Submit
+          Add
         </button>
       </form>
     </div>
