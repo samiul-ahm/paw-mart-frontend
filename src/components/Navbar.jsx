@@ -88,13 +88,16 @@ const Navbar = () => {
           <li>
             <NavLink to={"/services"}>Service</NavLink>
           </li>
-          <li>
-            <NavLink to={"/add-service"}>Add service</NavLink>
-          </li>
-          <li>
-            <NavLink to={"/my-services"}>My Services</NavLink>
-
-          </li>
+          {user && (
+            <>
+              <li>
+                <NavLink to={"/add-service"}>Add service</NavLink>
+              </li>
+              <li>
+                <NavLink to={"/my-services"}>My Services</NavLink>
+              </li>
+            </>
+          )}
         </ul>
       </div>
       <div className="navbar-end flex gap-8">

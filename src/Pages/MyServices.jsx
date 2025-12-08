@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../provider/AuthProvider";
 import { Link } from "react-router";
+import axios from "axios";
 
 const MyServices = () => {
   const [myServices, setMyServices] = useState([]);
@@ -21,6 +22,20 @@ const MyServices = () => {
 
   if (loading) {
     return <p className="text-center mt-10">Loading services...</p>;
+  }
+
+  const handleDelete = (id) =>{
+    axios.delete(`http://localhost:3000/delete/${id}`)
+    .then(res =>{
+        console.log(res.data);
+        const filterData = myServices.filter(service=> service._id != id)
+        console.log(filterData);
+        setMyServices(filterData);
+        
+    })
+    .catch(err=>{
+        console.log(err);
+    })
   }
 
   return (
@@ -53,9 +68,9 @@ const MyServices = () => {
                       <div className="font-bold">
                         {service?.serviceName}
                       </div>
-                      {/* <div className="text-sm opacity-50">
-                        {service?.category}
-                      </div> */}
+                      <div className="font-medium ">
+                        {service?.name}
+                      </div>
                     </div>
                   </div>
                 </td>
@@ -65,9 +80,9 @@ const MyServices = () => {
                 <td>${service?.price}</td>
 
                 <td className="flex gap-2">
-                  <button className="btn btn-error btn-xs">
+                  <Link onClick={()=>handleDelete(service._id)} className="btn btn-error btn-xs">
                     Delete
-                  </button>
+                  </Link>
                   <Link to={`/update-services/${service?._id}`} className="btn btn-primary btn-xs">Edit</Link>
                 </td>
               </tr>
